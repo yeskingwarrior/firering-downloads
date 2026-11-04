@@ -36,8 +36,8 @@
   }
 
   async function boundedPayload(response, expected, controller) {
-    const contentLength = response.headers.get('content-length');
-    if (contentLength && Number(contentLength) > expected) throw new Error('size');
+    // Browsers decode Content-Encoding before exposing the response body.
+    // Bound decoded bytes; Content-Length may describe a larger gzip envelope.
     if (!response.body || typeof response.body.getReader !== 'function') return response.arrayBuffer();
     const reader = response.body.getReader();
     const output = new Uint8Array(expected);
