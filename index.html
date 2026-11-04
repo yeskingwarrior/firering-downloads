@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#130d0c">
+  <meta name="description" content="Get firering for Android. Your music, playlists and offline listening, together in one app.">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="googlebot" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; upgrade-insecure-requests">
+  <title>firering for Android</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main>
+    <header class="brand"><img src="icon.svg" width="32" height="36" alt=""><span>firering</span></header>
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">FOR ANDROID · SHARED WITH YOU</div>
+      <h1 id="title">Your music.<br><span>With you.</span></h1>
+      <p class="intro">Search, make playlists, and take your songs offline.<br>No account or computer needed.</p>
+      <div class="download-area">
+        <button id="download" class="download" type="button" disabled aria-describedby="link-note status">Download APK <span aria-hidden="true">↓</span></button>
+        <p id="release-details" class="meta">Android 8.0 or later</p>
+        <p id="link-note" class="link-note">Use the complete link shared with you to unlock this download.</p>
+        <progress id="progress" max="100" value="0" hidden aria-label="Download progress"></progress>
+        <p id="status" class="status" role="status" aria-live="polite">Loading download details…</p>
+        <button id="retry" class="text-button" type="button" hidden>Try again</button>
+      </div>
+      <noscript><p class="error">Enable JavaScript in your browser to open this download.</p></noscript>
+    </section>
+    <section class="features" aria-label="App features">
+      <div class="feature"><span class="feature-icon" aria-hidden="true">⌕</span><h2>Find your sound</h2><p>Search songs, artists, and public YouTube links inside the app.</p></div>
+      <div class="feature"><span class="feature-icon" aria-hidden="true">♫</span><h2>Make it yours</h2><p>Build playlists and keep your favorites together.</p></div>
+      <div class="feature"><span class="feature-icon" aria-hidden="true">▷</span><h2>Keep listening</h2><p>Background playback with controls on your Lock Screen.</p></div>
+      <div class="feature"><span class="feature-icon" aria-hidden="true">↓</span><h2>Take it offline</h2><p>Save songs or import your audio. Each phone keeps its own library.</p></div>
+    </section>
+    <section class="install" aria-labelledby="install-title">
+      <div class="eyebrow">A FEW TAPS AWAY</div>
+      <h2 id="install-title">Install, then press play.</h2>
+      <ol>
+        <li>Tap <strong>Download APK</strong> on your Android phone.</li>
+        <li>Open the downloaded file. If Android asks, allow your browser or file manager to install it.</li>
+        <li>Open <strong>firering</strong> and find a song. Tap <strong>Save offline</strong> to keep it on your phone.</li>
+      </ol>
+      <p class="note"><strong>Already have firering?</strong><br>Install this APK over your existing app and choose <strong>Update</strong> to keep your library.</p>
+    </section>
+    <section class="share-note" aria-labelledby="share-title">
+      <h2 id="share-title">Pass the music on.</h2>
+      <p>Send the complete link you received to a friend. The full link is needed to unlock the download.</p>
+      <p class="small">Search, streams, and new downloads need internet. Keep the app open while saving audio. Some uploads may be unavailable.</p>
+    </section>
+    <footer>Free and open source · GPL-3.0<br>Component notices and corresponding source are included in the APK.</footer>
+  </main>
+</body>
+</html>
