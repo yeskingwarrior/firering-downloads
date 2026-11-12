@@ -1,8 +1,8 @@
 {
-  "version": "2.0.2",
-  "filename": "firering-2.0.2.apk",
+  "version": "2.0.3",
+  "filename": "firering-2.0.3.apk",
   "mime": "application/vnd.android.package-archive",
-  "sha256": "731e70ecad3d3aa92684c36067b73712864a696c3e484335e6913ffff946e622",
+  "sha256": "48623cc7ae8f987573b512598a937fafd8dd5207ea89490b08ed77bccc7ec763",
   "bytes": 7116027,
-  "payload": "firering-2.0.2-d44f2bf91915018b.frg"
+  "payload": "firering-2.0.3-d0dc1c770dac62a7.frg"
 }
