@@ -70,7 +70,7 @@
     let phase = 'network';
     message('Opening your link…');
     try {
-      const metadata = await fetch('./gate.json', options);
+      const metadata = await fetch('./gate.json?t=' + Date.now(), options);
       if (!metadata.ok) throw new Error('unavailable');
       const gate = validateGate(await metadata.json());
       if (current !== attempt) return;
@@ -91,7 +91,7 @@
       window.removeEventListener('hashchange', openPage);
       document.body.innerHTML = html;
       const script = document.createElement('script');
-      script.src = 'app.js';
+      script.src = 'app.js?v=3';
       script.addEventListener('error', () => {
         const pageStatus = document.getElementById('status');
         if (pageStatus) { pageStatus.textContent = 'The page could not finish loading. Refresh to try again.'; pageStatus.className = 'status error'; }

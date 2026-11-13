@@ -50,16 +50,22 @@
     return { ...value, payloadUrl: payload.href, sha256: value.sha256.toLowerCase() };
   }
 
+  async function fetchRelease(signal) {
+    const response = await fetch('./release.json?t=' + Date.now(), {
+      cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer', signal
+    });
+    if (!response.ok) throw new Error('The download is unavailable. Please try again shortly.');
+    const latest = validateRelease(await response.json());
+    details.textContent = `Version ${latest.version} · Android 8.0 or later · ${(latest.bytes / (1024 * 1024)).toFixed(1)} MB`;
+    return latest;
+  }
+
   async function loadRelease() {
     retry.hidden = true; release = null; updateButton();
     message('Loading download details…');
     const controller = new AbortController(); const timer = setTimeout(() => controller.abort(), 15000);
     try {
-      const response = await fetch('./release.json', { cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer', signal: controller.signal });
-      if (!response.ok) throw new Error('The download is being prepared. Please try again shortly.');
-      release = validateRelease(await response.json());
-      const size = (release.bytes / (1024 * 1024)).toFixed(1);
-      details.textContent = `Version ${release.version} · Android 8.0 or later · ${size} MB`;
+      release = await fetchRelease(controller.signal);
       readLinkKey();
     } catch (error) {
       message(error?.name === 'AbortError' ? 'The page took too long to load. Check your connection and try again.' : 'Download details could not be loaded. Please try again.', 'error');
@@ -87,13 +93,14 @@
 
   async function downloadApk() {
     if (busy || !release || !linkKey || !hasCrypto()) return;
-    const selected = release;
     const keyBytes = linkKey;
     busy = true; download.setAttribute('aria-busy', 'true'); updateButton(); retry.hidden = true;
     progress.hidden = false; progress.value = 0; message('Starting download…');
     const controller = new AbortController(); const timer = setTimeout(() => controller.abort(), 180000);
     let phase = 'download';
     try {
+      const selected = await fetchRelease(controller.signal);
+      release = selected;
       const response = await fetch(selected.payloadUrl, { cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer', signal: controller.signal });
       if (!response.ok) throw new Error('The download is unavailable. Please try again shortly.');
       const encrypted = await readPayload(response, selected.bytes + 32, controller);
